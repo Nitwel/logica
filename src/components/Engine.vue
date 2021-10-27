@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref, computed, withDefaults } from 'vue'
 import { useEventListener } from '@vueuse/core'
-import AndGate from './AND.vue'
+import AndGate from './AndGate.vue'
 import {useStore} from '../store'
 import Grid from './Grid.vue'
+import Switch from './Switch.vue'
+import IO from './IO.vue'
 
 type Props = {
     width?: number,
@@ -16,6 +18,10 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const {offsetX, offsetY, scale, mouseX, mouseY, mouseCoordX, mouseCoordY} = useStore()
+
+// offsetX.value = props.width / 2
+// offsetY.value = props.height / 2
+scale.value = 0.25
 
 const zoomStrength = ref(0.3)
 
@@ -76,6 +82,10 @@ useEventListener(document, 'mouseup', (event) => {
     <svg ref="engine" class="engine" :viewBox="viewBox" :width="props.width" :height="props.height" xmlns='http://www.w3.org/2000/svg'>
         <AndGate :x="0" :y="10" />
         <AndGate :x="40" :y="30" />
+        <IO :x="100" :y="40" :io="[{type: 'input', position: 'left'}, {type: 'input', position: 'left'}]"></IO>
+        <IO :x="30" :y="100" :io="[{type: 'input', position: 'top'}, {type: 'output', position: 'right'}, {type: 'output', position: 'right'}, {type: 'output', position: 'right'}]"></IO>
+        
+        <Switch/>
     </svg>
 </template>
 

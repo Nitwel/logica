@@ -42,12 +42,7 @@ const path = computed(() => {
     </svg>
 </template>
   
-<style>
-body {
-    margin: 0;
-    overflow: hidden;
-    user-select: none;
-    font-family: Arial, Helvetica, sans-serif;
-}
+<style scoped>
+
 </style>
   
