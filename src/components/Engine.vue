@@ -82,10 +82,10 @@ useEventListener(document, 'mouseup', (event) => {
     <svg ref="engine" class="engine" :viewBox="viewBox" :width="props.width" :height="props.height" xmlns='http://www.w3.org/2000/svg'>
         <!-- <AndGate :x="0" :y="10" />
         <AndGate :x="40" :y="30" /> -->
-        <Box v-for="i in 20" :scale="Math.pow(2, i - 9)" :x="60 * Math.pow(2, i - 9)" :y="40 * Math.pow(2, i - 9)" :io="[{type: 'input', position: 'left'}, {type: 'input', position: 'left'}]"></Box>
+        <!-- <Box v-for="i in 20" :scale="Math.pow(2, i - 9)" :x="60 * Math.pow(2, i - 9)" :y="40 * Math.pow(2, i - 9)" :io="[{type: 'input', position: 'left'}, {type: 'input', position: 'left'}, {type: 'output', position: 'right'}]"></Box> -->
         
-        <!-- <Box :x="30" :y="100" :io="[{type: 'input', position: 'top'}, {type: 'output', position: 'right'}, {type: 'output', position: 'right'}, {type: 'output', position: 'right'}]"></Box> -->
-        
+        <Box :x="30" :y="100" :io="[{type: 'input', position: 'left'}, {type: 'input', position: 'left'}, {type: 'output', position: 'right'}]"></Box>
+        <Box :x="80" :y="100" :io="[{type: 'input', position: 'left'}, {type: 'input', position: 'left'}, {type: 'output', position: 'right'}]"></Box>
         <!-- <Switch/> -->
     </svg>
 </template>
