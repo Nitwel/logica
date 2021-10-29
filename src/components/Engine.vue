@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
     height: 0
 })
 
-const {offsetX, offsetY, scale, mouseX, mouseY, mouseCoordX, mouseCoordY} = useStore()
+const {offsetX, offsetY, scale, mouseX, mouseY, mouseCoordX, mouseCoordY, boxTree} = useStore()
 
 // offsetX.value = props.width / 2
 // offsetY.value = props.height / 2
@@ -80,13 +80,7 @@ useEventListener(document, 'mouseup', (event) => {
     </div>
     <!-- <Grid class="grid" :width="props.width" :height="props.height"></Grid> -->
     <svg ref="engine" class="engine" :viewBox="viewBox" :width="props.width" :height="props.height" xmlns='http://www.w3.org/2000/svg'>
-        <!-- <AndGate :x="0" :y="10" />
-        <AndGate :x="40" :y="30" /> -->
-        <!-- <Box v-for="i in 20" :scale="Math.pow(2, i - 9)" :x="60 * Math.pow(2, i - 9)" :y="40 * Math.pow(2, i - 9)" :io="[{type: 'input', position: 'left'}, {type: 'input', position: 'left'}, {type: 'output', position: 'right'}]"></Box> -->
-        
-        <Box :x="30" :y="100" :io="[{type: 'input', position: 'left'}, {type: 'input', position: 'left'}, {type: 'output', position: 'right'}]"></Box>
-        <Box :x="80" :y="100" :io="[{type: 'input', position: 'left'}, {type: 'input', position: 'left'}, {type: 'output', position: 'right'}]"></Box>
-        <!-- <Switch/> -->
+        <Box v-for="(box, i) in boxTree" :key="i" v-model:x="box.x" v-model:y="box.y" :scale="box.scale" :io="box.io" ></Box>
     </svg>
 </template>
 

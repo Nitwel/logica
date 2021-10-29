@@ -4,17 +4,9 @@ import { ref, computed, toRefs, getCurrentInstance, getCurrentScope } from 'vue'
 import { useStore } from '../store'
 import { useDraggable } from '../composables/useDraggable'
 
-export type IO = {
-    position: 'top' | 'bottom' | 'left' | 'right'
-    type: 'input' | 'output' | 'gap',
-    label?: string
-}
-
 type Props = {
     x: number,
     y: number,
-    absX: number,
-    absY: number,
     scale: number,
     position: 'top' | 'bottom' | 'left' | 'right'
     type: 'input' | 'output' | 'gap',
@@ -43,11 +35,11 @@ function mouseDown(event: MouseEvent) {
     hoveringIO.value = self
 }
 
-defineExpose({x: props.absX, y: props.absY})
+defineExpose({x: props.x, y: props.y})
 </script>
 
 <template>
-    <circle @mousedown="mouseDown" @mouseenter="hoveringIO = self" @mouseleave="hoveringIO = null" class="io" :class="{[props.type]: true, 'no-drag': !shift}" :cx="props.x" :cy="props.y" :r="5 * props.scale" :stroke-width="props.scale" />
+    <circle @mousedown="mouseDown" @mouseenter="hoveringIO = self" @mouseleave="hoveringIO = null" class="io" :class="{[props.type]: true, 'no-drag': !shift}" :cx="x" :cy="y" :r="5 * props.scale" :stroke-width="props.scale" />
 </template>
   
 <style scoped>
